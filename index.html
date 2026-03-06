@@ -1,40 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>Medical War Mode</title>
-<style>
-body{
-background:#0b0b0b;
-color:white;
-font-family:Arial;
-text-align:center;
-padding-top:100px;
-}
 
-h1{
-color:#ff2b2b;
-font-size:50px;
-}
+<script src="https://cdn.tailwindcss.com"></script>
 
-button{
-background:#ff2b2b;
-border:none;
-padding:15px 40px;
-color:white;
-font-size:20px;
-border-radius:10px;
-cursor:pointer;
-}
-</style>
 </head>
 
-<body>
+<body class="bg-slate-950 text-white flex items-center justify-center min-h-screen">
 
-<h1>MEDICAL WAR MODE</h1>
+<div class="max-w-2xl w-full text-center">
 
-<p>Upload your notes. Extract exam points. Destroy exams.</p>
+<h1 class="text-5xl font-bold text-red-500 mb-4">
+🧠 Medical War Mode
+</h1>
 
-<button>Upload Notes</button>
+<p class="text-gray-400 mb-8">
+Paste your medical lecture and extract high-yield exam knowledge.
+</p>
+
+<textarea id="text"
+class="w-full h-40 p-4 rounded-xl bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+placeholder="Paste your lecture here..."></textarea>
+
+<button onclick="analyze()"
+class="mt-6 bg-red-500 hover:bg-red-600 transition px-8 py-3 rounded-xl text-lg font-semibold">
+Analyze
+</button>
+
+<div id="result"
+class="mt-8 bg-slate-800 p-6 rounded-xl text-left whitespace-pre-line">
+Result will appear here...
+</div>
+
+</div>
+
+<script>
+
+function analyze(){
+
+let text = document.getElementById("text").value
+
+let output =
+"Explanation:\n\n" + text +
+"\n\n----\n\nSummary:\nKey medical concepts extracted.\n\n----\n\nExam Points:\n1. High yield concept\n2. Important exam topic"
+
+document.getElementById("result").innerText = output
+
+}
+
+</script>
 
 </body>
 </html>
