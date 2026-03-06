@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Medical War Mode</title>
+
+<style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+text-align:center;
+padding:40px;
+}
+
+textarea{
+width:80%;
+height:200px;
+margin-top:20px;
+padding:10px;
+}
+
+button{
+padding:12px 20px;
+background:#ef4444;
+border:none;
+color:white;
+margin-top:10px;
+font-size:16px;
+cursor:pointer;
+}
+
+.box{
+background:#1e293b;
+padding:20px;
+margin-top:20px;
+border-radius:10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🧠 Medical War Mode</h1>
+
+<p>Paste part of your medical lecture</p>
+
+<textarea id="text"></textarea>
+
+<br>
+
+<button onclick="analyze()">Analyze</button>
+
+<div class="box" id="result">
+Explanation will appear here
+</div>
+
+<script>
+
+function analyze(){
+
+let text=document.getElementById("text").value;
+
+let output=
+"Explanation:\n\n"+text+
+"\n\n----\n\nSummary:\nKey concepts extracted.\n\n----\n\nExam points:\n1. Important concept\n2. Important concept";
+
+document.getElementById("result").innerText=output;
+
+}
+
+</script>
+
+</body>
+</html>
