@@ -1,8 +1,8 @@
 export default async function handler(req, res) {
-  try {
-    const { lecture } = req.body;
 
-    const prompt = `
+const lecture = req.body.lecture
+
+const prompt = `
 Extract from this medical lecture:
 
 1. High yield exam points
@@ -11,28 +11,33 @@ Extract from this medical lecture:
 
 Lecture:
 ${lecture}
-`;
+`
 
-    const response = await fetch(
-      "https://api-inference.huggingface.co/models/google/flan-t5-large",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          inputs: prompt
-        })
-      }
-    );
+try{
 
-    const data = await response.json();
+const response = await fetch(
+"https://router.huggingface.co/hf-inference/models/google/flan-t5-large",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+inputs: prompt
+})
+}
+)
 
-    res.status(200).json(data);
+const data = await response.json()
 
-  } catch (error) {
-    res.status(500).json({
-      error: "AI error"
-    });
-  }
+res.status(200).json(data)
+
+}catch(err){
+
+res.status(500).json({
+error:err.message
+})
+
+}
+
 }
