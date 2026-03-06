@@ -7,16 +7,15 @@
 
 <body class="bg-slate-900 text-white p-10">
 
-<h1 class="text-4xl font-bold mb-8">🧠 Medical War Mode</h1>
+<h1 class="text-4xl font-bold mb-6">🧠 Medical War Mode</h1>
 
-<textarea id="lecture" class="w-full h-40 p-4 text-black rounded"
-placeholder="Paste medical lecture..."></textarea>
+<textarea id="lecture" class="w-full h-40 p-4 text-black rounded" placeholder="Paste lecture here"></textarea>
 
-<button onclick="analyze()" class="mt-4 bg-blue-600 px-6 py-2 rounded">
+<button onclick="analyze()" class="mt-4 bg-blue-500 px-6 py-2 rounded">
 Analyze
 </button>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+<div class="grid grid-cols-3 gap-6 mt-8">
 
 <div class="bg-slate-800 p-6 rounded">
 <h2 class="text-yellow-400 font-bold">High Yield</h2>
@@ -45,19 +44,23 @@ document.getElementById("yield").innerText = "Analyzing..."
 document.getElementById("mcq").innerText = "Generating..."
 document.getElementById("exp").innerText = "Generating..."
 
-const response = await fetch("/api/analyze",{
+const res = await fetch("/api/analyze",{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
 },
-body:JSON.stringify({lecture:lecture})
+body:JSON.stringify({
+lecture:lecture
+})
 })
 
-const data = await response.json()
+const data = await res.json()
 
-document.getElementById("yield").innerText = data.high
-document.getElementById("mcq").innerText = data.mcq
-document.getElementById("exp").innerText = data.exp
+const text = JSON.stringify(data)
+
+document.getElementById("yield").innerText = text
+document.getElementById("mcq").innerText = text
+document.getElementById("exp").innerText = text
 
 }
 
