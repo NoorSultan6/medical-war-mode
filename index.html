@@ -2,76 +2,39 @@
 <html>
 <head>
 <title>Medical War Mode</title>
-
 <style>
-
 body{
-background:#0f172a;
+background:#0b0b0b;
 color:white;
 font-family:Arial;
 text-align:center;
-padding:40px;
+padding-top:100px;
 }
 
-textarea{
-width:80%;
-height:200px;
-margin-top:20px;
-padding:10px;
+h1{
+color:#ff2b2b;
+font-size:50px;
 }
 
 button{
-padding:12px 20px;
-background:#ef4444;
+background:#ff2b2b;
 border:none;
+padding:15px 40px;
 color:white;
-margin-top:10px;
-font-size:16px;
+font-size:20px;
+border-radius:10px;
 cursor:pointer;
 }
-
-.box{
-background:#1e293b;
-padding:20px;
-margin-top:20px;
-border-radius:10px;
-}
-
 </style>
-
 </head>
 
 <body>
 
-<h1>🧠 Medical War Mode</h1>
+<h1>MEDICAL WAR MODE</h1>
 
-<p>Paste part of your medical lecture</p>
+<p>Upload your notes. Extract exam points. Destroy exams.</p>
 
-<textarea id="text"></textarea>
-
-<br>
-
-<button onclick="analyze()">Analyze</button>
-
-<div class="box" id="result">
-Explanation will appear here
-</div>
-
-<script>
-
-function analyze(){
-
-let text=document.getElementById("text").value;
-
-let output=
-"Explanation:\n\n"+text+
-"\n\n----\n\nSummary:\nKey concepts extracted.\n\n----\n\nExam points:\n1. Important concept\n2. Important concept";
-
-document.getElementById("result").innerText=output;
-
-}
-
-</script>
+<button>Upload Notes</button>
 
 </body>
 </html>
