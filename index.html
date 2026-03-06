@@ -103,7 +103,58 @@ alert("Paste lecture first")
 return
 }
 
-const API_KEY = "AIzaSyAVBylAA1N4IhA86g4vm9rRnfF04YorBwA"
+async function analyzeLecture() {
+
+const lecture = document.getElementById("lectureInput").value
+
+document.getElementById("highYield").innerText = "Analyzing..."
+document.getElementById("mcq").innerText = "Generating questions..."
+document.getElementById("explanation").innerText = "Generating explanation..."
+
+const prompt = `
+You are a medical exam preparation assistant.
+
+From this lecture extract:
+
+1. High yield exam points
+2. 5 MCQ questions
+3. Simple explanation
+
+Lecture:
+${lecture}
+`
+
+try {
+
+const response = await fetch("https://api-inference.huggingface.co/models/google/flan-t5-large", {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({
+inputs: prompt
+})
+})
+
+const data = await response.json()
+
+const result = data[0].generated_text
+
+document.getElementById("highYield").innerText = result
+document.getElementById("mcq").innerText = result
+document.getElementById("explanation").innerText = result
+
+}
+
+catch(error){
+
+document.getElementById("highYield").innerText = "Error"
+document.getElementById("mcq").innerText = "Error"
+document.getElementById("explanation").innerText = "Error"
+
+}
+
+}
 
 const prompt = `
 You are a medical exam preparation assistant.
